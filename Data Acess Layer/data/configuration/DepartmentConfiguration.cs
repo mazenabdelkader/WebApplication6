@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data_Acess_Layer.models.DepartmentModel;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Data_Acess_Layer.data.configuration
+{
+    public class DepartmentConfiguration : BaseEntityConfiguration<Department>,IEntityTypeConfiguration<Department>
+    {
+        public new void Configure(EntityTypeBuilder<Department> builder)
+        {
+            builder.Property(d => d.id).UseIdentityColumn(10, 10);
+            builder.Property(d => d.Name).HasColumnType("varchar(20)");
+            builder.Property(d => d.code).HasColumnType("varchar(20)");
+            builder.Property(d => d.createdon).HasDefaultValueSql("GETDATE()");
+            builder.Property(d => d.lastmodifiedon).HasComputedColumnSql("GETDATE()");
+            
+            base.Configure(builder);
+        }
+    }
+
+}
+    
+    
+

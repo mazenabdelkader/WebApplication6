@@ -1,0 +1,13 @@
+﻿using Bussiness_Logic_Layer.Dtos.Department;
+
+namespace Bussiness_Logic_Layer.services
+{
+    public interface IDepartmentServices
+    {
+        int adddepartment(CreatedDepartmentDTO departmentdto);
+        int deletedepartment(int id);
+        IEnumerable<DepartmentDto> getalldepartment();
+        DepartmentDetailsDto? GetDepratmentdtobyid(int id);
+        int updatedepartment(UpdatedDepartmentDto departmentdto);
+    }
+}
