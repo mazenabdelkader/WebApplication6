@@ -27,9 +27,9 @@ namespace WebApplication6
             builder.Services.AddScoped<IDepartmentRepository, DepartmentReopistory>();
             builder.Services.AddScoped<IEmployeerepository, EmployeeRepository>(); // allow dependency injection for IEmployeeRepository
 
-            builder.Services.AddScoped<IEmployeeServices, empl>();
+            builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
 
-            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
+            //builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
 
             builder.Services.AddScoped<IUnitOfwork, UnitOfWork>();
             var app = builder.Build();
