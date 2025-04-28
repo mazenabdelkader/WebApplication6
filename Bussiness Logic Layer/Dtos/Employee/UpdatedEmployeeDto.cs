@@ -47,7 +47,7 @@ namespace Bussiness_Logic_Layer.Dtos.Employee
 
         //-------------------------
         public Gender Gender { get; set; }
-        public employeetype EmployeeType { get; set; }
+        public EmployeeType EmployeeType { get; set; }
 
         [Display(Name = "Department")]
         public int DepartmentId { get; set; }

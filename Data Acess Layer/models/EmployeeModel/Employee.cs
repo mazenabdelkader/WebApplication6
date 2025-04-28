@@ -27,5 +27,6 @@ namespace Data_Acess_Layer.models.EmployeeModel
         public int? departmentId { get; set; } // foreign key property {one to many} 
         //navigation property {one }
         public Department department { get; set; }
+        public string? ImageName { get; set; }
     }
 }

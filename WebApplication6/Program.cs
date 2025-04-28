@@ -2,6 +2,7 @@ using Bussiness_Logic_Layer.services;
 using Data_Acess_Layer.data;
 using Data_Acess_Layer.data.repository.classes;
 using Data_Acess_Layer.data.repository.interfaces;
+using Data_Acess_Layer.unitofwork;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication6
@@ -22,8 +23,15 @@ namespace WebApplication6
                 .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             }
         );
-            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>(); // allow dependency injection for IEmployeeRepository
             builder.Services.AddScoped<IDepartmentRepository, DepartmentReopistory>();
+            builder.Services.AddScoped<IEmployeerepository, EmployeeRepository>(); // allow dependency injection for IEmployeeRepository
+
+            builder.Services.AddScoped<IEmployeeServices, empl>();
+
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
+
+            builder.Services.AddScoped<IUnitOfwork, UnitOfWork>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
