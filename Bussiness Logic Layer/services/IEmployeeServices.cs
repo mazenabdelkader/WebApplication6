@@ -9,8 +9,8 @@ namespace Bussiness_Logic_Layer.services
 {
     public interface IEmployeeServices
     {
-        IEnumerable<EmployeeDetailsDto> getall(bool withtracking = false);
-        EmployeeDetailsDto Getbyid(int id);
+        IEnumerable<EmployeeDto> getallemployee(bool withtracking = false);
+        EmployeeDetailsDto Getemployeebyid(int id);
         int createemployee(CreatedEmployeeDto employee);
         int Updateemployee(UpdatedEmployeeDto employee);
         bool deleteemployee(int id);

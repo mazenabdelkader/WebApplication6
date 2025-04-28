@@ -18,7 +18,7 @@ namespace Bussiness_Logic_Layer.Dtos.Employee
         public string? PhoneNumber { get; set; }
         public DateOnly HiringDate { get; set; }
         public string Gender { get; set; }
-        public string EmployeeType { get; set; }
+        public string emptype { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int LastModifiedBy { get; set; }

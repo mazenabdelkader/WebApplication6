@@ -18,15 +18,15 @@ namespace Data_Acess_Layer.data.configuration
             builder.Property(p => p.Address).HasColumnType("varchar(50)");
             builder.Property(p => p.Salary).HasColumnType("decimal(10,2)");
 
-            builder.Property(E => E.Gender)
-                .HasConversion((empgender)=> empgender.ToString(),
-                    genderString => genderString);
+            //builder.Property(E => E.gender)
+            //    .HasConversion((empgender)=> empgender.ToString(),
+            //        genderString => genderString);
 
-            builder.Property(E => E.EmployeeType)
-                .HasConversion(
-                    empType => empType.ToString(),
+            //builder.Property(E => E.EmployeeType)
+            //    .HasConversion(
+            //        empType => empType.ToString(),
             
-                   empTypeString => empTypeString);
+            //       empTypeString => empTypeString);
 
             base.Configure(builder);
         }

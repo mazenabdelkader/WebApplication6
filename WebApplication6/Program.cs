@@ -1,3 +1,4 @@
+using Bussiness_Logic_Layer.profiles;
 using Bussiness_Logic_Layer.services;
 using Data_Acess_Layer.data;
 using Data_Acess_Layer.data.repository.classes;
@@ -19,7 +20,7 @@ namespace WebApplication6
 
             builder.Services.AddDbContext<AppDBContext>(Options =>
             {
-                Options
+                Options.UseLazyLoadingProxies()
                 .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             }
         );
@@ -28,8 +29,9 @@ namespace WebApplication6
             builder.Services.AddScoped<IEmployeerepository, EmployeeRepository>(); // allow dependency injection for IEmployeeRepository
 
             builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
-
-            //builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
+            //builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfiles()));
+            builder.Services.AddScoped<IEmployeerepository, EmployeeRepository>();  
 
             builder.Services.AddScoped<IUnitOfwork, UnitOfWork>();
             var app = builder.Build();

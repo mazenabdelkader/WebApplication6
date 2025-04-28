@@ -17,9 +17,9 @@ namespace Data_Acess_Layer.models.EmployeeModel
         public bool IsActive { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
-        public DateOnly HiringDate { get; set; }
-        public string Gender { get; set; }
-        public string EmployeeType { get; set; }
+        public DateTime HiringDate { get; set; }
+        public Gender gender { get; set; }
+        public EmployeeType EmployeeType { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int LastModifiedBy { get; set; }

@@ -7,7 +7,7 @@ using Data_Acess_Layer.models.EmployeeModel;
 
 namespace Data_Acess_Layer.data.repository.interfaces
 {
-    public interface IEmployeerepository
+    public interface IEmployeerepository : IGenericReopository<Employee>    
     {
         IQueryable<Employee> getemployeeByaddress(string address);
         
