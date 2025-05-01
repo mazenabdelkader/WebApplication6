@@ -4,6 +4,7 @@ using Data_Acess_Layer.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data_Acess_Layer.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250501145120_employee_department_relationship")]
+    partial class employee_department_relationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,11 +71,11 @@ namespace Data_Acess_Layer.Migrations
 
             modelBuilder.Entity("Data_Acess_Layer.models.EmployeeModel.Employee", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasColumnType("varchar(50)");
@@ -94,9 +97,6 @@ namespace Data_Acess_Layer.Migrations
 
                     b.Property<DateTime>("HiringDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -131,6 +131,9 @@ namespace Data_Acess_Layer.Migrations
                     b.Property<int>("gender")
                         .HasColumnType("int");
 
+                    b.Property<int>("id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("isdeleted")
                         .HasColumnType("bit");
 
@@ -142,10 +145,7 @@ namespace Data_Acess_Layer.Migrations
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GETDATE()");
 
-                    b.HasKey("id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.HasIndex("departmentId");
 

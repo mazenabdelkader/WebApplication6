@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Acess_Layer.models.DepartmentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data_Acess_Layer.models.EmployeeModel
 {
     public class Employee:BaseEntity
     {
         public int Id { get; set; }
+        [Required]
+   
         public string Name { get; set; } = null!;
         public int? Age { get; set; }
         public string? Address { get; set; }
@@ -27,6 +31,6 @@ namespace Data_Acess_Layer.models.EmployeeModel
         public int? departmentId { get; set; } // foreign key property {one to many} 
         //navigation property {one }
         public Department department { get; set; }
-        public string? ImageName { get; set; }
+        //public string? ImageName { get; set; }
     }
 }

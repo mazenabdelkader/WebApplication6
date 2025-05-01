@@ -10,27 +10,53 @@ namespace Data_Acess_Layer.unitofwork
 {
     public class UnitOfWork : IUnitOfwork
     {
+        private Lazy< IDepartmentRepository> DepartmentRepository;
+        private Lazy <IEmployeerepository> employeerepository;
         private readonly AppDBContext _dbContext;
 
-        public UnitOfWork(AppDBContext dbContext)
+        public UnitOfWork(IEmployeerepository employeerepository,IDepartmentRepository departmentRepository,AppDBContext dbContext)
         {
             _dbContext = dbContext;
-            //EmployeeRepository=new EmployeeRepository(_dbContext);
-            //DepartmentRepository = new DepartmentRepository(_dbContext);
+            EmployeeRepository = employeerepository;
+            DepartmentRepository = departmentRepository;
+        }
+        public IEmployeerepository EmployeeRepository
+        { 
+        get
+            {
+                return employeerepository;
+            }
+            set
+            {
+                employeerepository = value;
+            }   
+
 
         }
-        public IEmployeerepository EmployeeRepository => throw new NotImplementedException();
 
-        public IDepartmentRepository DepartmentRepository => throw new NotImplementedException();
+        public IDepartmentRepository departmentRepository
+        {
+            get
+            {
+                return departmentRepository;
+            }
+            set
+            {
+                departmentRepository = value;
+            }
+
+
+        }
+
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _dbContext.Dispose();   
         }
 
         public int SaveChanges()
         {
-            throw new NotImplementedException();
+           return _dbContext.SaveChanges(); 
         }
     }
 }

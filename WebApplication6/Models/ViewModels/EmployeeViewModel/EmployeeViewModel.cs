@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Data_Acess_Layer.models.EmployeeModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data_Acess_Layer.models.EmployeeModel;
 
-namespace Bussiness_Logic_Layer.Dtos.Employee
+namespace Presentation_Layer.Models.ViewModels.EmployeeViewModel
 {
-    public class UpdatedEmployeeDto
+    public class EmployeeViewModel
     {
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(50, ErrorMessage = "Max Length Should Be 50")]
         [MinLength(5, ErrorMessage = "Max Length Should Be 5")]
@@ -50,7 +43,8 @@ namespace Bussiness_Logic_Layer.Dtos.Employee
         public EmployeeType EmployeeType { get; set; }
 
         [Display(Name = "Department")]
-        public int DepartmentId { get; set; }
-     
+        public int? DepartmentId { get; set; }
+
+        public IFormFile? Image { get; set; }
     }
 }

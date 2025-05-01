@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Presentation_Layer.Controllers
 {
-    public class EmployeeController(IEmployeeServices employeeservice,ILogger<EmployeeController> logger ,IWebHostEnvironment environment) : Controller
+    public class EmployeeController(IEmployeeServices employeeservice,IDepartmentServices departmentServices,ILogger<EmployeeController> logger ,IWebHostEnvironment environment) : Controller
     {
         public IActionResult Index()
         {
@@ -15,7 +15,11 @@ namespace Presentation_Layer.Controllers
             return View(emloyees);
         }
         [HttpGet]
-        public IActionResult create() => View();
+        public IActionResult create()
+        {
+            ViewData["Departments"] = departmentServices.getalldepartment();    
+            return View();
+        }
         [HttpPost]
         public IActionResult create(CreatedEmployeeDto createdemployeedto)
         {

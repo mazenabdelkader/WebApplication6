@@ -16,7 +16,10 @@ namespace Bussiness_Logic_Layer.profiles
 
             CreateMap<Employee, EmployeeDto>()
                 .ForMember(dest => dest.Gender, options => options.MapFrom(src => src.gender))
-                .ForMember(dest => dest.emptype, options => options.MapFrom(src => src.EmployeeType));
+                .ForMember(dest => dest.emptype, options => options.MapFrom(src => src.EmployeeType))
+                .ForMember(dest => dest.department, options => options.MapFrom(src => src.department !=null? src.department.Name : null));
+
+
 
             CreateMap<Employee, EmployeeDetailsDto>()
             .ForMember(dest => dest.Gender, options => options.MapFrom(src => src.gender))

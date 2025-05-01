@@ -23,5 +23,7 @@ namespace Bussiness_Logic_Layer.Dtos.Employee
         public DateTime CreatedOn { get; set; }
         public int LastModifiedBy { get; set; }
         public DateTime LastModifiedOn { get; set; }
+        public string? department { get; set; }
+
     }
 }

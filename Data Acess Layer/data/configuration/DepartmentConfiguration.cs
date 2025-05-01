@@ -18,6 +18,9 @@ namespace Data_Acess_Layer.data.configuration
             builder.Property(d => d.code).HasColumnType("varchar(20)");
             builder.Property(d => d.createdon).HasDefaultValueSql("GETDATE()");
             builder.Property(d => d.lastmodifiedon).HasComputedColumnSql("GETDATE()");
+
+            builder.HasMany(d => d.Employeess).WithOne(e => e.department).OnDelete(DeleteBehavior.Cascade);
+
             
             base.Configure(builder);
         }

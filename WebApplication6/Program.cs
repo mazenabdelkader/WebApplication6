@@ -20,7 +20,7 @@ namespace WebApplication6
 
             builder.Services.AddDbContext<AppDBContext>(Options =>
             {
-                Options.UseLazyLoadingProxies()
+                Options.UseLazyLoadingProxies()   // Enable lazy loading 
                 .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             }
         );

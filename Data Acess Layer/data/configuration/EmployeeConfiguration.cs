@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Acess_Layer.models.EmployeeModel;
@@ -17,7 +18,10 @@ namespace Data_Acess_Layer.data.configuration
             builder.Property(p => p.Name).HasColumnType("varchar(50)");
             builder.Property(p => p.Address).HasColumnType("varchar(50)");
             builder.Property(p => p.Salary).HasColumnType("decimal(10,2)");
-
+            builder.HasKey(d => d.id);
+            builder
+              .HasIndex(e => e.Name)
+              .IsUnique();
             //builder.Property(E => E.gender)
             //    .HasConversion((empgender)=> empgender.ToString(),
             //        genderString => genderString);
@@ -25,7 +29,7 @@ namespace Data_Acess_Layer.data.configuration
             //builder.Property(E => E.EmployeeType)
             //    .HasConversion(
             //        empType => empType.ToString(),
-            
+
             //       empTypeString => empTypeString);
 
             base.Configure(builder);

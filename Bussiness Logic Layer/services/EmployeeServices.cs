@@ -8,31 +8,32 @@ using Bussiness_Logic_Layer.Dtos.Employee;
 using Data_Acess_Layer.data.repository.classes;
 using Data_Acess_Layer.data.repository.interfaces;
 using Data_Acess_Layer.models.EmployeeModel;
+using Data_Acess_Layer.unitofwork;
 
 namespace Bussiness_Logic_Layer.services
 {
-    public class EmployeeServices(IEmployeerepository  employeerepository,IMapper autoMapper) : IEmployeeServices
+    public class EmployeeServices(IUnitOfwork unitOfwork,IMapper autoMapper) : IEmployeeServices
     {
         public int createemployee(CreatedEmployeeDto employee)
         {
             var Employee = autoMapper.Map<CreatedEmployeeDto, Employee>(employee);  
-            return employeerepository.add(Employee); 
+            return unitOfwork.EmployeeRepository.add(Employee); 
         }
 
         public bool deleteemployee(int id)
         {
-            var employee = employeerepository.getbyid(id);
+            var employee = unitOfwork.EmployeeRepository.getbyid(id);
             if (employee == null) return false;
             else { 
             employee.isdeleted= true;   
-                return employeerepository.update(employee) > 0? true : false; 
+                return unitOfwork.EmployeeRepository.update(employee) > 0? true : false; 
 
             }
         }
 
         public IEnumerable<EmployeeDto> getallemployee(bool withtracking = false)
         {
-            var employees = employeerepository.getall(withtracking);
+            var employees = unitOfwork.EmployeeRepository.getall(withtracking);
             var returnedemployee = autoMapper.Map<IEnumerable<Employee>,IEnumerable<EmployeeDto>>(employees); 
 
             //var returnedemployee = employees.Select(e => new EmployeeDto
@@ -56,7 +57,7 @@ namespace Bussiness_Logic_Layer.services
 
         public EmployeeDetailsDto Getemployeebyid(int id)
         {
-           var employee=employeerepository.getbyid(id);
+           var employee= unitOfwork.EmployeeRepository.getbyid(id);
             //if( employee == null) return null;
 
             //else 
@@ -84,7 +85,7 @@ namespace Bussiness_Logic_Layer.services
 
         public int Updateemployee(UpdatedEmployeeDto employee)
         {
-            return employeerepository.update(autoMapper.Map<UpdatedEmployeeDto,Employee>(employee));    
+            return unitOfwork.EmployeeRepository.update(autoMapper.Map<UpdatedEmployeeDto,Employee>(employee));    
         }
     }
 }
