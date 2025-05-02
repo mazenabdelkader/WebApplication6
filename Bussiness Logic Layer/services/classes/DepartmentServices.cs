@@ -7,16 +7,17 @@ using Bussiness_Logic_Layer.Dtos.Department;
 using Bussiness_Logic_Layer.Factories;
 using Bussiness_Logic_Layer.services.interfaces;
 using Data_Acess_Layer.data.repository.interfaces;
+using Data_Acess_Layer.unitofwork;
 
 namespace Bussiness_Logic_Layer.services.classes
 {
-    public class DepartmentServices(IDepartmentRepository _departmentrepository) : IDepartmentServices
+    public class DepartmentServices(IUnitOfwork _unitOfWork) : IDepartmentServices
     {
 
         public IEnumerable<DepartmentDto> getalldepartment()
         {
             //1-manuel Mapping
-            var department = _departmentrepository.getall();
+            var department = _unitOfWork.DepartmentRepository.getall();
             //var departmentnoreturn = department.Select(d => new Departmentdto()
             //{
             //    id = d.id,
@@ -35,7 +36,7 @@ namespace Bussiness_Logic_Layer.services.classes
 
         public DepartmentDetailsDto? GetDepratmentdtobyid(int id)
         {
-            var department = _departmentrepository.getbyid(id);
+            var department = _unitOfWork.DepartmentRepository.getbyid(id);
             if (department is null) return null;
             else
             {
@@ -58,22 +59,23 @@ namespace Bussiness_Logic_Layer.services.classes
         public int adddepartment(CreatedDepartmentDTO departmentdto)
         {
             var department = departmentdto.toEntity();
-            return _departmentrepository.add(department);
+            return _unitOfWork.DepartmentRepository.add(department);
 
         }
         public int updatedepartment(UpdatedDepartmentDto departmentdto)
         {
 
-            return _departmentrepository.update(departmentdto.toEntity());
+            return _unitOfWork.DepartmentRepository.update(departmentdto.toEntity());
         }
-        public int deletedepartment(int id)
+        public bool deletedepartment(int id)
         {
-            var department = _departmentrepository.getbyid(id);
-            if (department is null) return 0;
+            var department = _unitOfWork.DepartmentRepository.getbyid(id);
+            if (department is null) return false;
             else
             {
-                int result = _departmentrepository.delete(department);
-                return result > 0 ? 1 : 0;
+                int result = _unitOfWork.DepartmentRepository.delete(department);
+                if (result > 0) return true;
+                else return false;
 
 
             }

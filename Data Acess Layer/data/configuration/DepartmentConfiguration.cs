@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Acess_Layer.models.DepartmentModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,7 +23,9 @@ namespace Data_Acess_Layer.data.configuration
 
             builder.HasMany(d => d.Employeess).WithOne(e => e.department).OnDelete(DeleteBehavior.Cascade);
 
-            
+            builder.HasKey(d => d.id);
+         
+
             base.Configure(builder);
         }
     }
