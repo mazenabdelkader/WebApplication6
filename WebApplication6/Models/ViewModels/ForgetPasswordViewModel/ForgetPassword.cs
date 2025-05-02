@@ -2,7 +2,7 @@
 
 namespace Presentation_Layer.Models.ViewModels.ForgetPasswordViewModel
 {
-    public class ForgertPassword
+    public class ForgetPassword
     {
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Email Is Required")]

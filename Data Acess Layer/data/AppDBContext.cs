@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 using Data_Acess_Layer.data.configuration;
 using Data_Acess_Layer.models.DepartmentModel;
 using Data_Acess_Layer.models.EmployeeModel;
+using Data_Acess_Layer.models.identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data_Acess_Layer.data
 {
-    public class AppDBContext :DbContext
+    public class AppDBContext(DbContextOptions<AppDBContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
-        public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
-        {
-
-        }   
+       
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Server=.;Database=mazen01;Trusted_Connection=true;"); 
