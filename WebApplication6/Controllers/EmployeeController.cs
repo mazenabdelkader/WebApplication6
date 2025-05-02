@@ -1,5 +1,5 @@
 ﻿using Bussiness_Logic_Layer.Dtos.Employee;
-using Bussiness_Logic_Layer.services;
+using Bussiness_Logic_Layer.services.interfaces;
 using Data_Acess_Layer.data.repository.interfaces;
 using Data_Acess_Layer.models.EmployeeModel;
 using Microsoft.AspNetCore.Mvc;

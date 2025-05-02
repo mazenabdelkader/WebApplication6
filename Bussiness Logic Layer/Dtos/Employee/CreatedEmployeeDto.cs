@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Acess_Layer.models.EmployeeModel;
+using Microsoft.AspNetCore.Http;
 
 namespace Bussiness_Logic_Layer.Dtos.Employee
 {
@@ -33,5 +34,6 @@ namespace Bussiness_Logic_Layer.Dtos.Employee
         public Gender Gender { get; set; }
 
         public string EmployeeType { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

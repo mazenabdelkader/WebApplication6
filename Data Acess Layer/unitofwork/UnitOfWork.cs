@@ -4,59 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data_Acess_Layer.data;
+using Data_Acess_Layer.data.repository.classes;
 using Data_Acess_Layer.data.repository.interfaces;
 
 namespace Data_Acess_Layer.unitofwork
 {
     public class UnitOfWork : IUnitOfwork
     {
-        private Lazy< IDepartmentRepository> DepartmentRepository;
-        private Lazy <IEmployeerepository> employeerepository;
+        private Lazy<IDepartmentRepository> _DepartmentRepository;
+        private Lazy<IEmployeerepository> _employeerepository;
         private readonly AppDBContext _dbContext;
 
-        public UnitOfWork(IEmployeerepository employeerepository,IDepartmentRepository departmentRepository,AppDBContext dbContext)
+        public UnitOfWork(IEmployeerepository employeerepository, IDepartmentRepository departmentRepository, AppDBContext dbContext)
         {
             _dbContext = dbContext;
-            EmployeeRepository = employeerepository;
-            DepartmentRepository = departmentRepository;
+            _employeerepository = new Lazy<IEmployeerepository>(() => new EmployeeRepository(dbContext));
+            _DepartmentRepository = new Lazy<IDepartmentRepository>(() => new DepartmentReopistory(dbContext));
         }
         public IEmployeerepository EmployeeRepository
-        { 
-        get
-            {
-                return employeerepository;
-            }
-            set
-            {
-                employeerepository = value;
-            }   
-
-
-        }
-
-        public IDepartmentRepository departmentRepository
         {
             get
             {
-                return departmentRepository;
+                return _employeerepository.Value;
             }
-            set
-            {
-                departmentRepository = value;
-            }
+
 
 
         }
 
+        public IDepartmentRepository DepartmentRepository
+        {
+
+
+            get
+            {
+                return _DepartmentRepository.Value;
+            }
+        }
 
         public void Dispose()
         {
-            _dbContext.Dispose();   
+            throw new NotImplementedException();
         }
 
         public int SaveChanges()
         {
-           return _dbContext.SaveChanges(); 
+            throw new NotImplementedException();
         }
     }
 }

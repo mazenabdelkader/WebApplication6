@@ -1,5 +1,7 @@
 using Bussiness_Logic_Layer.profiles;
-using Bussiness_Logic_Layer.services;
+using Bussiness_Logic_Layer.services.attachmentservice;
+using Bussiness_Logic_Layer.services.classes;
+using Bussiness_Logic_Layer.services.interfaces;
 using Data_Acess_Layer.data;
 using Data_Acess_Layer.data.repository.classes;
 using Data_Acess_Layer.data.repository.interfaces;
@@ -20,7 +22,7 @@ namespace WebApplication6
 
             builder.Services.AddDbContext<AppDBContext>(Options =>
             {
-                Options.UseLazyLoadingProxies()   // Enable lazy loading 
+                Options   // Enable lazy loading 
                 .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             }
         );
@@ -34,6 +36,7 @@ namespace WebApplication6
             builder.Services.AddScoped<IEmployeerepository, EmployeeRepository>();  
 
             builder.Services.AddScoped<IUnitOfwork, UnitOfWork>();
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

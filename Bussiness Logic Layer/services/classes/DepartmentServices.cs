@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Bussiness_Logic_Layer.Dtos.Department;
 using Bussiness_Logic_Layer.Factories;
+using Bussiness_Logic_Layer.services.interfaces;
 using Data_Acess_Layer.data.repository.interfaces;
 
-namespace Bussiness_Logic_Layer.services
+namespace Bussiness_Logic_Layer.services.classes
 {
     public class DepartmentServices(IDepartmentRepository _departmentrepository) : IDepartmentServices
     {
